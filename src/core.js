@@ -36,11 +36,11 @@ export function next(state) {
 }
 
 export function setEntries(state, entries) {
-    if (!List.isList(entries)) {
-        throw new Error('Entries must be an Immutable List.');
-    }
+    // if (!List.isList(entries)) {
+    //     throw new Error('Entries must be an Immutable List.');
+    // }
 
-    return state.set('entries', entries);
+    return state.set('entries', List(entries));
 }
 
 export function vote(voteState, entry) {
