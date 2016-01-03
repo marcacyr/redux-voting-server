@@ -36,17 +36,21 @@ export function next(state) {
 }
 
 export function setEntries(state, entries) {
-    // if (!List.isList(entries)) {
-    //     throw new Error('Entries must be an Immutable List.');
-    // }
+    if (!List.isList(entries)) {
+        console.warn('Entries should be an Immutable List if possible.');
+    }
 
     return state.set('entries', List(entries));
 }
 
 export function vote(voteState, entry) {
-    return voteState.updateIn(
-        ['tally', entry],
-        0,
-        tally => tally + 1
-    );
+    if (voteState.get('pair').includes(entry)) {
+        return voteState.updateIn(
+            ['tally', entry],
+            0,
+            tally => tally + 1
+        );
+    } else {
+        return voteState;
+    }
 }

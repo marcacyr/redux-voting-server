@@ -121,5 +121,15 @@ describe('application logic', () => {
                 })
             }));
         });
+
+        it('ignores the vote if for invalid entry', () => {
+            expect(
+                vote(Map({
+                    pair: List.of('Trainspotting', '28 Days Later')
+                }), 'Sunshine')
+            ).to.equal(Map({
+                pair: List.of('Trainspotting', '28 Days Later')
+            }));
+        });
     });
 });
